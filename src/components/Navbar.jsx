@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Bot, Sun, Moon, Menu, X } from 'lucide-react'
+import { Sun, Moon, Menu, X } from 'lucide-react'
 
 /**
  * Navbar - Responsive navigation with dark mode toggle
@@ -49,15 +49,15 @@ export default function Navbar({ darkMode, setDarkMode }) {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#hero" className="flex items-center gap-2 group" onClick={(e) => handleLinkClick(e, '#hero')}>
-            <div className={`w-10 h-10 rounded-lg border-3 flex items-center justify-center transition-all group-hover:rotate-12 ${
+            <div className={`w-10 h-10 rounded-lg border-3 flex items-center justify-center transition-all group-hover:rotate-12 overflow-hidden ${
               darkMode 
                 ? 'bg-yellow-brand border-white/30' 
                 : 'bg-yellow-brand border-black shadow-[3px_3px_0px_0px_#000]'
             }`}>
-              <Bot size={22} className="text-black" />
+              <img src="/image/lwa_logo.png" alt="Learn With AI Logo" className="w-full h-full object-cover" />
             </div>
             <span className="font-heading font-bold text-lg md:text-xl">
-              AI Learning Hub
+              Learn With AI
             </span>
           </a>
 

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Bot, BookOpen, Sparkles } from 'lucide-react'
+import { BookOpen, Sparkles } from 'lucide-react'
 
 /**
  * LoadingScreen - Animated loading screen with Neo Brutalism style
@@ -13,28 +13,13 @@ export default function LoadingScreen() {
       transition={{ duration: 0.5 }}
     >
       <div className="flex flex-col items-center gap-6">
-        {/* Animated icons */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-center">
           <motion.div
-            animate={{ y: [0, -20, 0], rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-16 h-16 bg-yellow-brand border-3 border-black rounded-xl shadow-[4px_4px_0px_0px_#000] flex items-center justify-center"
+            animate={{ y: [0, -20, 0], rotate: [0, 5, -5, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] flex items-center justify-center drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)]"
           >
-            <Bot size={32} className="text-black" />
-          </motion.div>
-          <motion.div
-            animate={{ y: [0, -20, 0], rotate: [0, -10, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-            className="w-16 h-16 bg-blue-brand border-3 border-black rounded-xl shadow-[4px_4px_0px_0px_#000] flex items-center justify-center"
-          >
-            <BookOpen size={32} className="text-white" />
-          </motion.div>
-          <motion.div
-            animate={{ y: [0, -20, 0], rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-            className="w-16 h-16 bg-pink-brand border-3 border-black rounded-xl shadow-[4px_4px_0px_0px_#000] flex items-center justify-center"
-          >
-            <Sparkles size={32} className="text-white" />
+            <img src="/image/lwa_logo.png" alt="Learn With AI Logo" className="w-full h-full object-contain" />
           </motion.div>
         </div>
 
@@ -45,7 +30,7 @@ export default function LoadingScreen() {
           transition={{ delay: 0.3 }}
           className="text-3xl md:text-4xl font-bold font-heading text-center"
         >
-          AI Learning Hub
+          Learn With AI
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}

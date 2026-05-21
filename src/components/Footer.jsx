@@ -1,4 +1,4 @@
-import { Bot, Heart, Mail, MapPin, Globe, Camera, Play } from 'lucide-react'
+import { Heart, Mail, MapPin, Globe, Camera, Play } from 'lucide-react'
 
 /**
  * Footer - Site footer with about, contact, and social links
@@ -16,10 +16,10 @@ export default function Footer({ darkMode }) {
           {/* About */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-yellow-brand border-2 border-white/30 flex items-center justify-center">
-                <Bot size={22} className="text-black" />
+              <div className="w-10 h-10 rounded-lg bg-yellow-brand border-2 border-white/30 flex items-center justify-center overflow-hidden">
+                <img src="/image/lwa_logo.png" alt="Learn With AI Logo" className="w-full h-full object-cover" />
               </div>
-              <span className="font-heading font-bold text-xl">AI Learning Hub</span>
+              <span className="font-heading font-bold text-xl">Learn With AI</span>
             </div>
             <p className="text-gray-400 leading-relaxed">
               Platform pembelajaran AI sederhana untuk pengajar dan anak-anak panti asuhan. 
@@ -94,7 +94,7 @@ export default function Footer({ darkMode }) {
         <div className={`border-t pt-8 ${darkMode ? 'border-white/10' : 'border-white/15'}`}>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-500 text-sm text-center md:text-left">
-              © {new Date().getFullYear()} AI Learning Hub. Dibuat dengan{' '}
+              © {new Date().getFullYear()} Learn With AI. Dibuat dengan{' '}
               <Heart size={14} className="inline text-red-brand" />{' '}
               untuk panti asuhan di Indonesia.
             </p>
