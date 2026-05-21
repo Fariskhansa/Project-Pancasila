@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { Routes, Route } from 'react-router-dom'
 import LoadingScreen from './components/LoadingScreen'
 import ScrollProgress from './components/ScrollProgress'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import WhyLearnAI from './components/WhyLearnAI'
-import Tutorials from './components/Tutorials'
-import PromptLibrary from './components/PromptLibrary'
-import AITools from './components/AITools'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
+import Home from './pages/Home'
+import VideoNotebookLM from './pages/tutorials/VideoNotebookLM'
+import AudioNotebookLM from './pages/tutorials/AudioNotebookLM'
+import QuizFlashcardNotebookLM from './pages/tutorials/QuizFlashcardNotebookLM'
+import QuizGemini from './pages/tutorials/QuizGemini'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -39,13 +40,13 @@ function App() {
         <>
           <ScrollProgress />
           <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-          <main>
-            <Hero darkMode={darkMode} />
-            <WhyLearnAI darkMode={darkMode} />
-            <Tutorials darkMode={darkMode} />
-            <PromptLibrary darkMode={darkMode} />
-            <AITools darkMode={darkMode} />
-          </main>
+          <Routes>
+            <Route path="/" element={<Home darkMode={darkMode} />} />
+            <Route path="/tutorial/video-notebooklm" element={<VideoNotebookLM darkMode={darkMode} />} />
+            <Route path="/tutorial/audio-notebooklm" element={<AudioNotebookLM darkMode={darkMode} />} />
+            <Route path="/tutorial/quiz-flashcard-notebooklm" element={<QuizFlashcardNotebookLM darkMode={darkMode} />} />
+            <Route path="/tutorial/quiz-gemini" element={<QuizGemini darkMode={darkMode} />} />
+          </Routes>
           <Footer darkMode={darkMode} />
           <BackToTop />
         </>

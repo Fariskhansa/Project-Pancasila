@@ -1,17 +1,13 @@
-import { useState, useRef } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import {
   Video,
   Headphones,
   FileQuestion,
   Sparkles,
   ArrowRight,
-  CheckCircle2,
-  X,
-  ExternalLink,
-  ChevronRight,
-  Lightbulb,
-  MessageSquare
+  ChevronRight
 } from 'lucide-react'
 
 /**
@@ -19,9 +15,10 @@ import {
  * Features progress tracking and interactive learning modules
  */
 
-const tutorials = [
+export const tutorials = [
   {
     id: 1,
+    slug: 'video-notebooklm',
     icon: Video,
     title: 'Membuat bahan belajar berupa video pakai NotebookLM',
     description: 'Pelajari cara mengubah materi pelajaran menjadi video edukatif dengan bantuan NotebookLM secara mudah dan cepat.',
@@ -46,6 +43,7 @@ const tutorials = [
   },
   {
     id: 2,
+    slug: 'audio-notebooklm',
     icon: Headphones,
     title: 'Membuat bahan belajar berupa audio pakai NotebookLM',
     description: 'Ubah teks atau materi tertulis menjadi ringkasan audio atau format podcast menggunakan fitur NotebookLM.',
@@ -70,6 +68,7 @@ const tutorials = [
   },
   {
     id: 3,
+    slug: 'quiz-flashcard-notebooklm',
     icon: FileQuestion,
     title: 'Membuat bahan belajar berupa quiz dan kartu tanya pakai NotebookLM',
     description: 'Generate soal latihan, quiz interaktif, dan flashcard (kartu tanya) langsung dari dokumen materi belajarmu.',
@@ -94,6 +93,7 @@ const tutorials = [
   },
   {
     id: 4,
+    slug: 'quiz-gemini',
     icon: Sparkles,
     title: 'Membuat Quiz Interaktif yang proper pakai Gemini',
     description: 'Gunakan Google Gemini untuk menyusun kuis interaktif yang seru, lengkap dengan pembahasan dan skenario.',
@@ -121,19 +121,7 @@ const tutorials = [
 export default function Tutorials({ darkMode }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
-  
-  // State for active modal
-  const [activeModal, setActiveModal] = useState(null)
-
-  const openModal = (tutorial) => {
-    setActiveModal(tutorial)
-    document.body.style.overflow = 'hidden'
-  }
-
-  const closeModal = () => {
-    setActiveModal(null)
-    document.body.style.overflow = 'unset'
-  }
+  const navigate = useNavigate()
 
   return (
     <section id="tutorials" className={`py-20 md:py-28 bg-grid relative ${darkMode ? '' : 'bg-gray-50'}`}>
@@ -172,7 +160,7 @@ export default function Tutorials({ darkMode }) {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 className={`neo-card p-6 md:p-8 flex flex-col group relative transition-transform hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_#000] cursor-pointer`}
-                onClick={() => openModal(tutorial)}
+                onClick={() => navigate(`/tutorial/${tutorial.slug}`)}
               >
                 {/* Header: Icon */}
                 <div className="flex justify-between items-start mb-6">
@@ -211,143 +199,6 @@ export default function Tutorials({ darkMode }) {
         </div>
       </div>
 
-      {/* Modal / Detail View */}
-      <AnimatePresence>
-        {activeModal && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-            {/* Overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={closeModal}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm"
-            />
-
-            {/* Modal Content */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className={`relative w-full max-w-4xl max-h-[90vh] overflow-y-auto neo-card flex flex-col z-10 ${
-                darkMode ? 'bg-dark text-white' : 'bg-white text-black'
-              }`}
-            >
-              {/* Modal Header */}
-              <div className={`sticky top-0 z-20 flex items-center justify-between p-5 md:p-6 border-b-3 ${
-                darkMode ? 'bg-dark border-white/10' : 'bg-white border-black'
-              }`}>
-                <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-xl border-3 flex items-center justify-center shrink-0 ${
-                    activeModal.color
-                  } ${darkMode ? 'border-white/30' : 'border-black'}`}>
-                    <activeModal.icon size={24} className={activeModal.iconColor} />
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-heading font-bold leading-tight pr-4">
-                    {activeModal.title}
-                  </h3>
-                </div>
-                <button 
-                  onClick={closeModal}
-                  className={`p-2 rounded-lg border-2 transition-transform hover:scale-110 shrink-0 ${
-                    darkMode ? 'border-white/20 hover:bg-white/10' : 'border-black hover:bg-gray-100'
-                  }`}
-                >
-                  <X size={24} />
-                </button>
-              </div>
-
-              {/* Modal Body */}
-              <div className="p-6 md:p-8 space-y-8">
-                {/* Overview */}
-                <div>
-                  <h4 className="text-lg font-bold mb-2 flex items-center gap-2">
-                    <Lightbulb size={20} className="text-yellow-brand" /> 
-                    Penjelasan Singkat
-                  </h4>
-                  <p className={`leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                    {activeModal.details.aiUsage}
-                  </p>
-                </div>
-
-                {/* Steps */}
-                <div>
-                  <h4 className="text-lg font-bold mb-4 flex items-center gap-2">
-                    <CheckCircle2 size={20} className="text-green-brand" /> 
-                    Langkah-Langkah
-                  </h4>
-                  <div className="space-y-3">
-                    {activeModal.details.steps.map((step, idx) => (
-                      <div key={idx} className={`flex items-start gap-4 p-4 rounded-xl border-2 ${
-                        darkMode ? 'bg-white/5 border-white/10' : 'bg-gray-50 border-black/10'
-                      }`}>
-                        <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center shrink-0 font-bold text-sm ${
-                          darkMode ? 'border-white/20 bg-dark-card' : 'border-black bg-white shadow-[2px_2px_0px_0px_#000]'
-                        }`}>
-                          {idx + 1}
-                        </div>
-                        <p className="pt-1">{step}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Example Prompts */}
-                <div>
-                  <h4 className="text-lg font-bold mb-4 flex items-center gap-2">
-                    <MessageSquare size={20} className="text-blue-brand" /> 
-                    Contoh Prompt Siap Pakai
-                  </h4>
-                  <div className="space-y-3">
-                    {activeModal.details.prompts.map((prompt, idx) => (
-                      <div key={idx} className={`p-4 rounded-xl border-2 font-mono text-sm leading-relaxed ${
-                        darkMode ? 'bg-dark-card border-white/20 text-gray-300' : 'bg-[#f4f4f4] border-black text-gray-800'
-                      }`}>
-                        "{prompt}"
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Tips */}
-                <div className={`p-5 rounded-xl border-2 ${
-                  darkMode ? 'bg-yellow-brand/10 border-yellow-brand/30' : 'bg-yellow-brand/20 border-black'
-                }`}>
-                  <h4 className="font-bold mb-2 flex items-center gap-2">
-                    <Sparkles size={18} className={darkMode ? 'text-yellow-brand' : 'text-black'} />
-                    Tips Tambahan
-                  </h4>
-                  <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
-                    {activeModal.details.tips}
-                  </p>
-                </div>
-              </div>
-
-              {/* Modal Footer */}
-              <div className={`sticky bottom-0 p-5 md:p-6 border-t-3 flex justify-end gap-4 ${
-                darkMode ? 'bg-dark border-white/10' : 'bg-white border-black'
-              }`}>
-                <button
-                  onClick={closeModal}
-                  className={`px-6 py-2.5 rounded-lg border-2 font-bold transition-transform hover:scale-105 ${
-                    darkMode ? 'border-white/20 hover:bg-white/10' : 'border-black hover:bg-gray-100'
-                  }`}
-                >
-                  Tutup
-                </button>
-                <a
-                  href={activeModal.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`neo-btn px-6 py-2.5 flex items-center gap-2 ${activeModal.color} ${activeModal.iconColor}`}
-                >
-                  Buka Aplikasi <ExternalLink size={18} />
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </section>
   )
 }
