@@ -108,7 +108,7 @@ export default function Hero({ darkMode }) {
               ? 'bg-yellow-brand/20 border-white/20 text-yellow-brand'
               : 'bg-yellow-brand border-black shadow-[3px_3px_0px_0px_#000]'
           }`}>
-            <Sparkles size={16} /> Untuk Panti Asuhan
+            <Sparkles size={16} /> Belajar AI Bersama
           </span>
         </motion.div>
 

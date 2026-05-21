@@ -8,5 +8,3 @@ export default defineConfig({
     tailwindcss(),
   ],
 })
-
-// Force restart 1
