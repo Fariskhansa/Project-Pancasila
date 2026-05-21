@@ -6,7 +6,6 @@ import {
   FileQuestion,
   Sparkles,
   ArrowRight,
-  Clock,
   CheckCircle2,
   X,
   ExternalLink,
@@ -123,19 +122,8 @@ export default function Tutorials({ darkMode }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   
-  // State for tracking completed modules
-  const [completedModules, setCompletedModules] = useState([])
   // State for active modal
   const [activeModal, setActiveModal] = useState(null)
-
-  const toggleComplete = (id, e) => {
-    e.stopPropagation()
-    if (completedModules.includes(id)) {
-      setCompletedModules(completedModules.filter(m => m !== id))
-    } else {
-      setCompletedModules([...completedModules, id])
-    }
-  }
 
   const openModal = (tutorial) => {
     setActiveModal(tutorial)
@@ -146,9 +134,6 @@ export default function Tutorials({ darkMode }) {
     setActiveModal(null)
     document.body.style.overflow = 'unset'
   }
-
-  // Calculate progress
-  const progressPercentage = Math.round((completedModules.length / tutorials.length) * 100)
 
   return (
     <section id="tutorials" className={`py-20 md:py-28 bg-grid relative ${darkMode ? '' : 'bg-gray-50'}`}>
@@ -175,39 +160,21 @@ export default function Tutorials({ darkMode }) {
           }`}>
             Pilih modul pembelajaran di bawah ini untuk mulai memahami cara pemanfaatan AI dalam edukasi.
           </p>
-
-          {/* Progress Bar */}
-          <div className={`max-w-md mx-auto neo-card p-4 flex flex-col gap-3 ${darkMode ? 'bg-dark-card' : 'bg-white'}`}>
-            <div className="flex justify-between items-center font-heading font-bold text-sm">
-              <span>Progress Belajar</span>
-              <span>{progressPercentage}%</span>
-            </div>
-            <div className={`w-full h-4 rounded-full border-2 ${darkMode ? 'border-white/20 bg-dark' : 'border-black bg-gray-100'}`}>
-              <div 
-                className="h-full bg-green-brand rounded-full transition-all duration-500 ease-out border-r-2 border-black"
-                style={{ width: `${progressPercentage}%` }}
-              ></div>
-            </div>
-          </div>
         </motion.div>
 
         {/* Tutorial cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {tutorials.map((tutorial, index) => {
-            const isCompleted = completedModules.includes(tutorial.id)
-            
             return (
               <motion.div
                 key={tutorial.id}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className={`neo-card p-6 md:p-8 flex flex-col group relative transition-transform hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_#000] cursor-pointer ${
-                  isCompleted ? (darkMode ? 'bg-dark-card opacity-80' : 'bg-gray-50 opacity-80') : ''
-                }`}
+                className={`neo-card p-6 md:p-8 flex flex-col group relative transition-transform hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_#000] cursor-pointer`}
                 onClick={() => openModal(tutorial)}
               >
-                {/* Header: Icon & Duration & Checklist */}
+                {/* Header: Icon */}
                 <div className="flex justify-between items-start mb-6">
                   <div className="flex items-center gap-4">
                     <div className={`w-14 h-14 rounded-xl border-3 flex items-center justify-center transition-transform group-hover:rotate-6 ${
@@ -215,25 +182,7 @@ export default function Tutorials({ darkMode }) {
                     } ${darkMode ? 'border-white/30' : 'border-black shadow-[3px_3px_0px_0px_#000]'}`}>
                       <tutorial.icon size={28} className={tutorial.iconColor} />
                     </div>
-                    <div className={`flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full border-2 ${
-                      darkMode ? 'bg-white/10 border-white/20 text-gray-300' : 'bg-white border-black text-gray-700 shadow-[2px_2px_0px_0px_#000]'
-                    }`}>
-                      <Clock size={14} />
-                      {tutorial.duration}
-                    </div>
                   </div>
-                  
-                  {/* Complete Checkbox */}
-                  <button 
-                    onClick={(e) => toggleComplete(tutorial.id, e)}
-                    className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-colors z-10 ${
-                      isCompleted 
-                        ? 'bg-green-brand border-black text-white' 
-                        : (darkMode ? 'border-white/30 text-transparent hover:border-white' : 'border-black text-transparent hover:bg-gray-100')
-                    }`}
-                  >
-                    <CheckCircle2 size={20} className={isCompleted ? 'opacity-100' : 'opacity-0 hover:opacity-50 text-gray-400'} />
-                  </button>
                 </div>
 
                 {/* Content */}
