@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import LoadingScreen from './components/LoadingScreen'
 import ScrollProgress from './components/ScrollProgress'
 import Navbar from './components/Navbar'
@@ -15,12 +15,24 @@ import QuizGemini from './pages/tutorials/QuizGemini'
 function App() {
   const [loading, setLoading] = useState(true)
   const [darkMode, setDarkMode] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     // Simulate loading
     const timer = setTimeout(() => setLoading(false), 2200)
     return () => clearTimeout(timer)
   }, [])
+
+  // Fix scroll position on route change
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+    // Set a tiny timeout to ensure DOM has updated after routing
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    }, 0)
+  }, [location.pathname])
 
   useEffect(() => {
     if (darkMode) {
@@ -40,13 +52,15 @@ function App() {
         <>
           <ScrollProgress />
           <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-          <Routes>
-            <Route path="/" element={<Home darkMode={darkMode} />} />
-            <Route path="/tutorial/video-notebooklm" element={<VideoNotebookLM darkMode={darkMode} />} />
-            <Route path="/tutorial/audio-notebooklm" element={<AudioNotebookLM darkMode={darkMode} />} />
-            <Route path="/tutorial/quiz-flashcard-notebooklm" element={<QuizFlashcardNotebookLM darkMode={darkMode} />} />
-            <Route path="/tutorial/quiz-gemini" element={<QuizGemini darkMode={darkMode} />} />
-          </Routes>
+          <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<Home darkMode={darkMode} />} />
+              <Route path="/tutorial/video-notebooklm" element={<VideoNotebookLM darkMode={darkMode} />} />
+              <Route path="/tutorial/audio-notebooklm" element={<AudioNotebookLM darkMode={darkMode} />} />
+              <Route path="/tutorial/quiz-flashcard-notebooklm" element={<QuizFlashcardNotebookLM darkMode={darkMode} />} />
+              <Route path="/tutorial/quiz-gemini" element={<QuizGemini darkMode={darkMode} />} />
+            </Routes>
+          </AnimatePresence>
           <Footer darkMode={darkMode} />
           <BackToTop />
         </>

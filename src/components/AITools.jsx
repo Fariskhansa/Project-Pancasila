@@ -1,10 +1,27 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import {
-  Sparkles,
-  BookOpen,
-  ExternalLink,
-} from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
+
+const GeminiLogo = ({ size, className }) => (
+  <img 
+    src="/image/Google_Gemini.png" 
+    alt="Gemini Logo" 
+    width={size} 
+    height={size} 
+    className={`object-contain ${className || ''}`}
+    style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.15))' }}
+  />
+)
+
+const NotebookLMLogo = ({ size, className }) => (
+  <img 
+    src="/image/notebooklm.webp" 
+    alt="NotebookLM Logo" 
+    width={size} 
+    height={size} 
+    className={`object-contain ${className || ''}`}
+  />
+)
 
 /**
  * AITools - Section showcasing AI tools for learning content creation
@@ -13,22 +30,24 @@ import {
 
 const tools = [
   {
-    icon: Sparkles,
-    name: 'Gemini',
+    icon: GeminiLogo,
+    name: <span className="gemini-sparkle">Gemini</span>,
     description: 'AI chatbot dari Google yang bisa menjawab pertanyaan, membuat ringkasan, menjelaskan konsep, dan membantu mengerjakan tugas.',
     category: 'Chatbot AI',
-    color: 'bg-blue-brand',
-    iconColor: 'text-white',
+    color: 'bg-white', // Changed to white so original logo colors pop out
+    hoverColor: 'hover:bg-purple-brand',
+    iconColor: '', // No extra color needed for img
     link: 'https://gemini.google.com',
     features: ['Tanya Jawab', 'Ringkasan', 'Penjelasan Materi'],
   },
   {
-    icon: BookOpen,
-    name: 'NotebookLM',
+    icon: NotebookLMLogo,
+    name: <span className="notebook-sparkle">NotebookLM</span>,
     description: 'Tools dari Google untuk membuat catatan cerdas. Upload materi dan AI akan membantu merangkum dan membuat tanya jawab otomatis.',
     category: 'Catatan Cerdas',
-    color: 'bg-green-brand',
-    iconColor: 'text-white',
+    color: 'bg-white', // Changed to white so original logo colors pop out
+    hoverColor: 'hover:bg-green-brand',
+    iconColor: '', 
     link: 'https://notebooklm.google.com',
     features: ['Upload Dokumen', 'Rangkuman Otomatis', 'Podcast AI'],
   }
@@ -113,15 +132,14 @@ export default function AITools({ darkMode }) {
                 ))}
               </div>
 
-              {/* Link */}
               <a
                 href={tool.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`neo-btn px-4 py-2.5 text-sm justify-center ${
+                className={`neo-btn px-4 py-2.5 text-sm justify-center transition-colors duration-300 ${
                   darkMode
-                    ? `${tool.color} text-white border-white/30`
-                    : `${tool.color} ${tool.iconColor}`
+                    ? `bg-white text-black border-white/30 ${tool.hoverColor}`
+                    : `bg-white text-black ${tool.hoverColor}`
                 }`}
               >
                 Kunjungi <ExternalLink size={14} />

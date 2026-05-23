@@ -1,0 +1,47 @@
+Judul diawal: Membuat Quiz Interaktif yang proper pakai Gemini
+bawahnya ada penjelasan singkat halaman ini
+
+1. Membuka Google Gemini
+Lalu ada elemen UI atau Button untuk menuju ke google gemini
+
+2. Memasukkan Sumber Materi Belajar
+akan ada elemen UI untuk memilih 2 cara input materi yang mana isi dibawahnya akan berganti sesuai cara yg dipilih:
+File PDF/PPT | Materi Dari NotebookLM
+Isi bagian File Pdf:
+1. klik Tanda Plus(+)
+tampilan gambar 1
+2.pilih upload File
+tampilkan gambar 2
+3. pilih File Materi
+tampilkan gambar 3
+4. file Berhasil ditambahkan
+tampilkan gambar 4
+
+Isi bagian Materi Dari NotebookLM:
+1. klik Tanda Plus(+)
+tampilan gambar 1
+2.pilih Upload Lainnya lalu pilih Notebooks
+tampilkan gambar 5
+3. pilih notebook lalu klik tambahkan
+tampilkan gambar 6
+4. Materi notebooklm Berhasil ditambahkan
+tampilkan gambar 7
+
+3. Meminta Google Gemini membuatkan Quiz
+langkah langkah:
+1. pilih mode Gemini Canvas
+tampilkan gambar 8
+2. pilih model gemini terbaik
+tampilkan gambar 9
+3. Copy Teks dibawah ini
+ada elemen UI PromptBox yang berisi promptnya
+4.paste ke gemini dan klik kirimkan
+tampilkan gambar 10
+5. akan diminta menjawab jumlah soal dan tingkat kesulitan, silahkan jawab seperti pada contoh(misalnya untuk 10 soal dan tingkat kesulitan sedang)
+tampilkan gambar 11
+6. tunggu hingga selesai
+tampilkan gambar 12
+7. quiz berhasil dibuat
+tampilkan gambar 13
+8. klik download untuk disimpan ke perangkat
+tampilkan gambar 14

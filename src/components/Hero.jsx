@@ -108,7 +108,7 @@ export default function Hero({ darkMode }) {
               ? 'bg-yellow-brand/20 border-white/20 text-yellow-brand'
               : 'bg-yellow-brand border-black shadow-[3px_3px_0px_0px_#000]'
           }`}>
-            <Sparkles size={16} /> Belajar AI Bersama
+            <Sparkles size={16} /> Belajar Lebih Pintar
           </span>
         </motion.div>
 
@@ -119,11 +119,11 @@ export default function Hero({ darkMode }) {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight mb-6"
         >
-          Belajar{' '}
+          Ubah Cara Belajarmu Jadi Lebih{' '}
           <span className={`relative inline-block ${
             darkMode ? 'text-yellow-brand' : ''
           }`}>
-            AI
+            Pintar
             <motion.span
               className={`absolute -bottom-2 left-0 w-full h-3 rounded-full -z-10 ${
                 darkMode ? 'bg-yellow-brand/30' : 'bg-yellow-brand'
@@ -133,11 +133,11 @@ export default function Hero({ darkMode }) {
               transition={{ delay: 0.8, duration: 0.5 }}
             />
           </span>{' '}
-          dengan Cara yang{' '}
+          Bersama{' '}
           <span className={`relative inline-block ${
             darkMode ? 'text-blue-brand' : ''
           }`}>
-            Mudah
+            AI
             <motion.span
               className={`absolute -bottom-2 left-0 w-full h-3 rounded-full -z-10 ${
                 darkMode ? 'bg-blue-brand/30' : 'bg-blue-brand/40'
@@ -158,8 +158,8 @@ export default function Hero({ darkMode }) {
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}
         >
-          Platform pembelajaran AI sederhana untuk pengajar dan anak-anak panti asuhan. 
-          Mulai gunakan kecerdasan buatan untuk belajar lebih efektif!
+          Kumpulan panduan interaktif untuk anak sekolah dasar hingga menengah. 
+          Temukan cara-cara seru menyulap buku catatanmu jadi bahan belajar yang lebih cerdas dan praktis menggunakan teknologi AI!
         </motion.p>
 
         {/* CTA Buttons */}

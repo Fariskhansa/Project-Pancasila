@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import Hero from '../components/Hero'
 import WhyLearnAI from '../components/WhyLearnAI'
 import Tutorials from '../components/Tutorials'
@@ -6,12 +7,17 @@ import AITools from '../components/AITools'
 
 export default function Home({ darkMode }) {
   return (
-    <main>
+    <motion.main
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+    >
       <Hero darkMode={darkMode} />
       <WhyLearnAI darkMode={darkMode} />
       <Tutorials darkMode={darkMode} />
       <PromptLibrary darkMode={darkMode} />
       <AITools darkMode={darkMode} />
-    </main>
+    </motion.main>
   )
 }
