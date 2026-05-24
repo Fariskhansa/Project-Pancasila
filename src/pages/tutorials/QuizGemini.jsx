@@ -269,26 +269,26 @@ Halaman akhir setelah semua soal selesai. Tampilkan jumlah jawaban yang benar, t
             </div>
             
             {/* Bookmark Navigator Tabs */}
-            <div className="flex items-end pl-2 sm:pl-8 relative z-10 overflow-x-auto scrollbar-hide pb-[3px]">
+            <div className="flex items-end pl-2 sm:pl-8 relative z-10 overflow-x-auto scrollbar-hide -mb-[3px]">
               <button 
                 onClick={() => setActiveTab('pdf')}
-                className={`px-4 sm:px-6 py-3 rounded-t-xl border-3 border-b-0 font-bold flex items-center gap-2 relative transition-all duration-200 ${
+                className={`px-3 sm:px-6 py-2 sm:py-3 rounded-t-xl border-3 border-b-0 font-bold flex items-center gap-1.5 sm:gap-2 relative transition-all duration-200 ${
                   activeTab === 'pdf' 
-                    ? `top-[3px] pt-4 z-20 ${darkMode ? 'bg-gradient-to-b from-pink-brand/40 to-dark-card text-white border-white/20' : 'bg-gradient-to-b from-pink-300 to-white text-black border-black'}`
-                    : `top-[3px] z-0 ${darkMode ? 'bg-dark-surface text-gray-400 border-white/20 hover:bg-white/10' : 'bg-gray-200 text-gray-500 border-black hover:bg-gray-300 hover:text-black shadow-[inset_0_-4px_0_rgba(0,0,0,0.1)]'}`
+                    ? `pt-3 sm:pt-4 z-20 ${darkMode ? 'bg-gradient-to-b from-pink-brand/40 to-dark-card text-white border-white/20' : 'bg-gradient-to-b from-pink-300 to-white text-black border-black'}`
+                    : `mb-[3px] z-0 ${darkMode ? 'bg-dark-surface text-gray-400 border-white/20 hover:bg-white/10' : 'bg-gray-200 text-gray-500 border-black hover:bg-gray-300 hover:text-black shadow-[inset_0_-4px_0_rgba(0,0,0,0.1)]'}`
                 }`}
               >
-                <FileText size={18} className="shrink-0" /> <span className="text-sm sm:text-base">Pilih dari Komputer</span>
+                <FileText className="shrink-0 w-4 h-4 sm:w-[18px] sm:h-[18px]" /> <span className="text-xs sm:text-base">Pilih dari Komputer</span>
               </button>
               <button 
                 onClick={() => setActiveTab('notebooklm')}
-                className={`px-4 sm:px-6 py-3 rounded-t-xl border-3 border-b-0 font-bold flex items-center gap-2 relative transition-all duration-200 ml-1 sm:ml-2 ${
+                className={`px-3 sm:px-6 py-2 sm:py-3 rounded-t-xl border-3 border-b-0 font-bold flex items-center gap-1.5 sm:gap-2 relative transition-all duration-200 ml-1 sm:ml-2 ${
                   activeTab === 'notebooklm' 
-                    ? `top-[3px] pt-4 z-20 ${darkMode ? 'bg-gradient-to-b from-pink-brand/40 to-dark-card text-white border-white/20' : 'bg-gradient-to-b from-pink-300 to-white text-black border-black'}`
-                    : `top-[3px] z-0 ${darkMode ? 'bg-dark-surface text-gray-400 border-white/20 hover:bg-white/10' : 'bg-gray-200 text-gray-500 border-black hover:bg-gray-300 hover:text-black shadow-[inset_0_-4px_0_rgba(0,0,0,0.1)]'}`
+                    ? `pt-3 sm:pt-4 z-20 ${darkMode ? 'bg-gradient-to-b from-pink-brand/40 to-dark-card text-white border-white/20' : 'bg-gradient-to-b from-pink-300 to-white text-black border-black'}`
+                    : `mb-[3px] z-0 ${darkMode ? 'bg-dark-surface text-gray-400 border-white/20 hover:bg-white/10' : 'bg-gray-200 text-gray-500 border-black hover:bg-gray-300 hover:text-black shadow-[inset_0_-4px_0_rgba(0,0,0,0.1)]'}`
                 }`}
               >
-                <NotebookIcon size={18} className="shrink-0" /> <span className="text-sm sm:text-base hidden sm:inline">Ambil dari <span className="notebook-sparkle">NotebookLM</span></span><span className="text-sm sm:hidden"><span className="notebook-sparkle">NotebookLM</span></span>
+                <NotebookIcon className="shrink-0 w-4 h-4 sm:w-[18px] sm:h-[18px]" /> <span className="text-xs sm:text-base hidden sm:inline">Ambil dari <span className="notebook-sparkle">NotebookLM</span></span><span className="text-xs sm:hidden"><span className="notebook-sparkle">NotebookLM</span></span>
               </button>
             </div>
 
