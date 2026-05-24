@@ -37,17 +37,29 @@ export default function Navbar({ darkMode, setDarkMode }) {
 
   const handleLinkClick = (e, href) => {
     e.preventDefault()
-    setMenuOpen(false)
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    
+    const scrollToSection = () => {
+      const el = document.querySelector(href)
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 80
+        window.scrollTo({ top: y, behavior: 'smooth' })
+      }
+    }
+
+    if (menuOpen) {
+      setMenuOpen(false)
+      // Jeda 300ms menunggu animasi menu mobile tertutup agar scroll tidak dibatalkan browser
+      setTimeout(scrollToSection, 300)
+    } else {
+      scrollToSection()
+    }
   }
 
   const handleLogoClick = (e) => {
-    e.preventDefault()
-    if (!isHome) {
-      navigate('/')
-    } else {
-      handleLinkClick(e, '#hero')
+    if (isHome) {
+      e.preventDefault()
+      setMenuOpen(false)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
@@ -57,7 +69,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 100 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || menuOpen
           ? darkMode
             ? 'bg-dark/95 backdrop-blur-md border-b border-white/10 shadow-lg'
             : 'bg-white/95 backdrop-blur-md border-b-3 border-black shadow-lg'
@@ -141,6 +153,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
       <AnimatePresence>
         {isHome && menuOpen && (
           <motion.div
+            key="mobile-menu"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

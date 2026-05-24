@@ -22,8 +22,8 @@ export default function Footer({ darkMode }) {
               <span className="font-heading font-bold text-xl">Learn With AI</span>
             </div>
             <p className="text-gray-400 leading-relaxed">
-              Platform pembelajaran AI sederhana untuk pengajar dan anak-anak panti asuhan. 
-              Membantu memahami dan menggunakan AI sebagai alat bantu belajar yang efektif.
+              Platform pembelajaran AI sederhana untuk pengajar dan anak-anak. 
+              Membantu memahami dan memanfaatkan AI sebagai alat pendamping belajar yang interaktif dan efektif.
             </p>
           </div>
 
@@ -96,7 +96,7 @@ export default function Footer({ darkMode }) {
             <p className="text-gray-500 text-sm text-center md:text-left">
               © {new Date().getFullYear()} Learn With AI. Dibuat dengan{' '}
               <Heart size={14} className="inline text-red-brand" />{' '}
-              untuk panti asuhan di Indonesia.
+              untuk generasi cerdas Indonesia.
             </p>
             <p className="text-gray-500 text-sm">
               Built with React + Vite + TailwindCSS
