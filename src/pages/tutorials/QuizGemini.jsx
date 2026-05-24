@@ -176,7 +176,7 @@ Halaman akhir setelah semua soal selesai. Tampilkan jumlah jawaban yang benar, t
           }`}
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
-            <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl border-4 flex items-center justify-center shrink-0 bg-yellow-brand text-black shadow-[4px_4px_0px_0px_#000] ${darkMode ? 'border-white/30' : 'border-black'}`}>
+            <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl border-4 flex items-center justify-center shrink-0 bg-purple-brand text-white shadow-[4px_4px_0px_0px_#000] ${darkMode ? 'border-white/30' : 'border-black'}`}>
               <Sparkles size={32} />
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-5xl font-heading font-black tracking-tight">
