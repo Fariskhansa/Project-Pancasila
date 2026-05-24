@@ -150,7 +150,7 @@ Halaman akhir setelah semua soal selesai. Tampilkan jumlah jawaban yang benar, t
       <div className={`absolute inset-0 ${
         darkMode 
           ? 'bg-gradient-to-br from-dark via-dark-surface/30 to-dark' 
-          : 'bg-gradient-to-br from-yellow-brand/20 via-white to-blue-brand/10'
+          : 'bg-gradient-to-br from-purple-brand/20 via-white to-blue-brand/10'
       }`} />
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
