@@ -41,6 +41,11 @@ html {
 body {
   font-family: var(--font-body);
   overflow-x: hidden;
+  cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 2.5L20.5 11L13.5 13L16.5 20L12.5 21L9.5 14L4.5 18V2.5Z" fill="white" stroke="black" stroke-width="2" stroke-linejoin="round"/></svg>'), auto;
+}
+
+a, button, [role="button"], input, select, textarea, .cursor-pointer {
+  cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 12V4.5C8 3.1 9.1 2 10.5 2C11.9 2 13 3.1 13 4.5V10H14.5C15.3 10 16 10.7 16 11.5V12H17.5C18.3 12 19 12.7 19 13.5V14H20.5C21.3 14 22 14.7 22 15.5V18.5C22 20.4 20.4 22 18.5 22H10.5C8.6 22 7 20.4 7 18.5V13H8V12Z" fill="%23FFD93D" stroke="black" stroke-width="1.5" stroke-linejoin="round"/></svg>') 10 2, pointer !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -254,4 +259,63 @@ h1, h2, h3, h4, h5, h6 {
 
 .dark .hamburger-line {
   background: #fff;
+}
+
+
+/* Gemini & NotebookLM Sparkle Effects */
+.gemini-sparkle {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  animation: geminiColorCycle 8s infinite;
+}
+
+@keyframes geminiColorCycle {
+  0%, 75%, 100% { color: inherit; text-shadow: none; }
+  80% { color: #A855F7; text-shadow: 0 0 10px rgba(168, 85, 247, 0.5); }
+  85% { color: #4D96FF; text-shadow: 0 0 10px rgba(77, 150, 255, 0.5); }
+  90% { color: #FF78C4; text-shadow: 0 0 10px rgba(255, 120, 196, 0.5); }
+}
+
+.gemini-sparkle::after {
+  content: "?";
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  font-size: 14px;
+  animation: geminiStarTwinkle 8s infinite;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@keyframes geminiStarTwinkle {
+  0%, 75%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  85% { opacity: 1; transform: scale(1) rotate(15deg); }
+}
+
+.notebook-sparkle {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  animation: notebookColorCycle 8s infinite;
+  animation-delay: 4s; /* Offset so they don't sparkle at the same time */
+}
+
+@keyframes notebookColorCycle {
+  0%, 75%, 100% { color: inherit; text-shadow: none; }
+  80% { color: #FF9F43; text-shadow: 0 0 10px rgba(255, 159, 67, 0.5); }
+  85% { color: #FFD93D; text-shadow: 0 0 10px rgba(255, 217, 61, 0.5); }
+  90% { color: #6BCB77; text-shadow: 0 0 10px rgba(107, 203, 119, 0.5); }
+}
+
+.notebook-sparkle::after {
+  content: "?";
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  font-size: 14px;
+  animation: geminiStarTwinkle 8s infinite;
+  animation-delay: 4s;
+  pointer-events: none;
+  opacity: 0;
 }

@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
+import confetti from 'canvas-confetti'
 import {
   ArrowLeft,
   Lightbulb,
@@ -22,6 +23,21 @@ export default function TutorialLayout({ tutorial, darkMode }) {
     setCopiedIndex(index)
     setTimeout(() => setCopiedIndex(null), 2000)
   }
+
+  const endRef = useRef(null)
+  const isEndInView = useInView(endRef, { once: true, margin: "0px 0px -20% 0px" })
+
+  useEffect(() => {
+    if (isEndInView && tutorial) {
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#FFD93D', '#4D96FF', '#6BCB77', '#FF78C4', '#A855F7']
+      })
+      localStorage.setItem(`tutorial_${tutorial.slug}_completed`, 'true')
+    }
+  }, [isEndInView, tutorial])
   
   // Scroll to top on mount
   useEffect(() => {
@@ -43,12 +59,17 @@ export default function TutorialLayout({ tutorial, darkMode }) {
   }
 
   return (
-    <div className={`min-h-screen pt-20 md:pt-28 pb-12 md:pb-20 ${darkMode ? 'bg-dark text-white' : 'bg-gray-50 text-gray-900'}`}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className={`relative min-h-screen pt-20 md:pt-28 pb-12 md:pb-20 bg-grid ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+      <div className={`absolute inset-0 ${
+        darkMode 
+          ? 'bg-gradient-to-br from-dark via-dark-surface/30 to-dark' 
+          : 'bg-gradient-to-br from-yellow-brand/20 via-white to-blue-brand/10'
+      }`} />
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Back Button */}
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/')}
           className={`group flex items-center gap-2 mb-6 md:mb-8 px-4 py-2 rounded-xl font-bold transition-all ${
             darkMode 
               ? 'hover:bg-white/10 text-gray-300 hover:text-white' 
@@ -220,6 +241,9 @@ export default function TutorialLayout({ tutorial, darkMode }) {
               Buka Aplikasi Sekarang <ExternalLink className="w-4 h-4 md:w-5 md:h-5" />
             </a>
           </motion.div>
+
+          {/* Invisible trigger for confetti */}
+          <div ref={endRef} className="h-4 w-full" />
 
         </div>
       </div>
