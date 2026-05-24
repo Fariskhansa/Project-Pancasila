@@ -20,6 +20,7 @@ Proyek ini dibangun menggunakan *stack* teknologi frontend modern untuk memastik
 - **[Framer Motion](https://www.framer.com/motion/):** Library animasi yang kuat untuk React, digunakan untuk menghidupkan UI aplikasi.
 - **[React Router 7](https://reactrouter.com/):** Digunakan untuk navigasi antar halaman (*routing*).
 - **[Lucide React](https://lucide.dev/):** Kumpulan ikon SVG yang bersih, modern, dan konsisten.
+- **[Canvas Confetti](https://www.npmjs.com/package/canvas-confetti):** Library untuk membuat efek animasi perayaan/konfeti saat pengguna menyelesaikan tutorial.
 
 ## 🚀 Cara Menjalankan Proyek Secara Lokal
 
