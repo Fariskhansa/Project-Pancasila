@@ -250,6 +250,9 @@ Halaman akhir setelah semua soal selesai. Tampilkan jumlah jawaban yang benar, t
             >
               Buka <span className="gemini-sparkle">Google Gemini</span> <ExternalLink size={20} />
             </a>
+            <div className={`mt-6 rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+              <img src="/image/Modul_Quiz_Gemini/Gambar 15.jpg" alt="Halaman Utama Gemini" className="w-full h-auto object-contain" />
+            </div>
           </motion.section>
 
           {/* Section 2 */}

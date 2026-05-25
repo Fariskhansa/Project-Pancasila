@@ -17,7 +17,7 @@ export default function LoadingScreen() {
           <motion.div
             animate={{ y: [0, -20, 0], rotate: [0, 5, -5, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] flex items-center justify-center drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)]"
+            className="w-[100px] h-[100px] md:w-[300px] md:h-[300px] flex items-center justify-center drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)]"
           >
             <img src="/image/lwa_logo.png" alt="Learn With AI Logo" className="w-full h-full object-contain" />
           </motion.div>
