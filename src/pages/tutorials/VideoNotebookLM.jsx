@@ -180,7 +180,7 @@ export default function VideoNotebookLM({ darkMode }) {
               
               <div className="space-y-10">
                 <div className="space-y-3">
-                  <p className="font-bold text-base md:text-lg">1. Setelah masuk, klik tombol <strong>"+ Create new"</strong> yang ada di pojok kanan atas untuk membuat notebook baru.</p>
+                  <p className="font-bold text-base md:text-lg">1. Setelah masuk, klik tombol <strong>"+ Buat Baru"</strong> yang ada di pojok kanan atas untuk membuat notebook baru.</p>
                   <StepImage src={`${imgBase}/Gambar 2.png`} alt="Klik Create new" />
                 </div>
 
@@ -216,7 +216,7 @@ export default function VideoNotebookLM({ darkMode }) {
               
               <div className="space-y-10">
                 <div className="space-y-3">
-                  <p className="font-bold text-base md:text-lg">5. Di panel <strong>"Studio"</strong> yang ada di sisi kanan, cari dan klik opsi <strong>"Video Overview"</strong>.</p>
+                  <p className="font-bold text-base md:text-lg">5. Di panel <strong>"Studio"</strong> yang ada di sisi kanan, cari dan klik opsi <strong>"Ringkasan..."</strong>.</p>
                   <StepImage src={`${imgBase}/Gambar 6.png`} alt="Klik Video Overview di panel Studio" />
                 </div>
 
@@ -241,7 +241,7 @@ export default function VideoNotebookLM({ darkMode }) {
                 </div>
 
                 <div className="space-y-3">
-                  <p className="font-bold text-base md:text-lg">7. Tunggu sebentar ya, AI sedang memproses materi dan membuatkan video spesial buatmu... ⏳ Kamu akan melihat tulisan <strong>"Generating Video Overview... This may take a while"</strong>.</p>
+                  <p className="font-bold text-base md:text-lg">7. Tunggu sebentar ya, AI sedang memproses materi dan membuatkan video spesial buatmu... ⏳ Kamu akan melihat tulisan <strong>"Membuat Ringkasan Video... Proses ini mungkin perlu waktu..."</strong>.</p>
                   <StepImage src={`${imgBase}/Gambar 8.png`} alt="Loading - Generating Video Overview" />
                 </div>
               </div>
