@@ -1,7 +1,465 @@
-import TutorialLayout from '../../layouts/TutorialLayout'
-import { tutorials } from '../../components/Tutorials'
+import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
+import confetti from 'canvas-confetti'
+import { ArrowLeft, ExternalLink, FileText, Play, Sparkles, List as ListIcon, X as XIcon } from 'lucide-react'
 
 export default function QuizFlashcardNotebookLM({ darkMode }) {
-  const tutorialData = tutorials.find(t => t.slug === 'quiz-flashcard-notebooklm')
-  return <TutorialLayout tutorial={tutorialData} darkMode={darkMode} />
+  const navigate = useNavigate()
+  const [activeTab, setActiveTab] = useState('upload')
+  const [activeToc, setActiveToc] = useState('langkah-1')
+  const [isTocOpen, setIsTocOpen] = useState(false)
+
+  const endRef = useRef(null)
+  const isEndInView = useInView(endRef, { once: true, margin: "0px 0px -20% 0px" })
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
+    if (isEndInView) {
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#FFD93D', '#4D96FF', '#6BCB77', '#FF78C4', '#A855F7']
+      })
+      localStorage.setItem('tutorial_notebooklm_completed', 'true')
+    }
+  }, [isEndInView])
+
+  // Simple scroll spy for TOC
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['langkah-1', 'langkah-2', 'langkah-3', 'langkah-4', 'langkah-5']
+      let current = sections[0]
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element && window.scrollY >= (element.offsetTop - 150)) {
+          current = section
+        }
+      }
+      setActiveToc(current)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <div className={`relative min-h-screen pt-20 md:pt-28 pb-12 md:pb-20 bg-grid ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+      <div className={`absolute inset-0 ${
+        darkMode 
+          ? 'bg-gradient-to-br from-dark via-dark-surface/30 to-dark' 
+          : 'bg-gradient-to-br from-green-brand/20 via-white to-blue-brand/10'
+      }`} />
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Back Button */}
+        <button
+          onClick={() => navigate('/')}
+          className={`group flex items-center gap-2 mb-6 md:mb-8 px-4 py-2 rounded-xl font-bold transition-all ${
+            darkMode 
+              ? 'hover:bg-white/10 text-gray-300 hover:text-white' 
+              : 'hover:bg-gray-200 text-gray-600 hover:text-black'
+          }`}
+        >
+          <ArrowLeft size={20} className="transition-transform group-hover:-translate-x-1" />
+          Kembali
+        </button>
+
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`neo-card p-4 sm:p-6 md:p-10 mb-8 md:mb-12 ${
+            darkMode ? 'bg-dark-card border-white/20' : 'bg-white'
+          }`}
+        >
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
+            <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl border-4 flex items-center justify-center shrink-0 bg-green-brand text-black shadow-[4px_4px_0px_0px_#000] ${darkMode ? 'border-white/30' : 'border-black'}`}>
+              <Sparkles size={32} />
+            </div>
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-heading font-black tracking-tight leading-tight">
+              Membuat Bahan Belajar Berupa Quiz Dan Kartu Tanya Menggunakan <span className="notebook-sparkle">NotebookLM</span>
+            </h1>
+          </div>
+          <p className={`text-base sm:text-lg md:text-xl leading-relaxed mt-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            Di sini kita akan belajar cara menggunakan robot pintar <span className="notebook-sparkle">Google NotebookLM</span> untuk mengubah materi pelajaranmu menjadi kuis tebak-tebakan dan kartu pintar yang seru banget!
+          </p>
+        </motion.div>
+
+        <div className="relative">
+          
+          {/* Floating TOC (Desktop Only) */}
+          <div className="hidden xl:block absolute top-0 bottom-0 -left-[280px] w-64">
+            <div className={`sticky top-28 neo-card p-5 ${darkMode ? 'bg-dark-card border-white/20' : 'bg-white'}`}>
+              <h3 className="font-heading font-bold text-base md:text-lg mb-4 flex items-center gap-2">
+                <ListIcon size={18} /> Daftar Isi
+              </h3>
+              <ul className="space-y-3 font-medium text-sm">
+              <li>
+                <a 
+                  href="#langkah-1" 
+                  className={`block transition-colors ${activeToc === 'langkah-1' ? 'text-blue-brand font-bold' : (darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black')}`}
+                >
+                  1. Membuka Google NotebookLM
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#langkah-2" 
+                  className={`block transition-colors ${activeToc === 'langkah-2' ? 'text-pink-brand font-bold' : (darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black')}`}
+                >
+                  2. Membuat "Buku Catatan" Baru
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#langkah-3" 
+                  className={`block transition-colors ${activeToc === 'langkah-3' ? 'text-green-brand font-bold' : (darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black')}`}
+                >
+                  3. Memasukkan Sumber Pelajaran
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#langkah-4" 
+                  className={`block transition-colors ${activeToc === 'langkah-4' ? 'text-yellow-brand font-bold' : (darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black')}`}
+                >
+                  4. Membuat Kartu Tanya Jawab
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#langkah-5" 
+                  className={`block transition-colors ${activeToc === 'langkah-5' ? 'text-purple-brand font-bold' : (darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black')}`}
+                >
+                  5. Membuat Kuis
+                </a>
+              </li>
+            </ul>
+          </div>
+          </div>
+
+          <div className="space-y-8 md:space-y-12 w-full">
+            
+            {/* Section 1 */}
+            <motion.section 
+              id="langkah-1"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className={`scroll-mt-28 neo-card p-4 sm:p-6 md:p-8 ${darkMode ? 'bg-dark-card border-white/20' : 'bg-white'}`}
+            >
+              <h2 className="text-xl md:text-3xl font-heading font-bold mb-4 flex items-center gap-3">
+                <span className={`w-8 h-8 md:w-10 md:h-10 rounded-full border-3 flex items-center justify-center shrink-0 ${darkMode ? 'bg-blue-brand text-black border-white/20' : 'bg-blue-brand text-black border-black shadow-[3px_3px_0px_0px_#000]'}`}>1</span>
+                Membuka <span className="notebook-sparkle">Google NotebookLM</span>
+              </h2>
+              <div className="space-y-6 mt-6">
+                <a 
+                  href="https://notebooklm.google.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`neo-btn px-6 py-3 text-lg w-full sm:w-auto inline-flex items-center justify-center gap-2 ${darkMode ? 'bg-green-brand text-black border-white/20' : 'bg-green-brand text-black hover:bg-green-500'}`}
+                >
+                  Buka <span className="notebook-sparkle">Google NotebookLM</span> <ExternalLink size={20} />
+                </a>
+                <p className="font-bold text-base md:text-lg">Nantinya kamu akan berada di halaman Notebook LM Seperti ini:</p>
+                <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                  <img src="/image/Modul_NotebookLM/Gambar 1.jpg" alt="Halaman Awal NotebookLM" className="w-full h-auto object-contain" />
+                </div>
+              </div>
+            </motion.section>
+
+            {/* Section 2 */}
+            <motion.section 
+              id="langkah-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className={`scroll-mt-28 neo-card p-4 sm:p-6 md:p-8 ${darkMode ? 'bg-dark-card border-white/20' : 'bg-white'}`}
+            >
+              <h2 className="text-xl md:text-3xl font-heading font-bold mb-4 flex items-center gap-3">
+                <span className={`w-8 h-8 md:w-10 md:h-10 rounded-full border-3 flex items-center justify-center shrink-0 ${darkMode ? 'bg-pink-brand text-black border-white/20' : 'bg-pink-brand text-black border-black shadow-[3px_3px_0px_0px_#000]'}`}>2</span>
+                Membuat "Buku Catatan" Baru
+              </h2>
+              <div className="space-y-6 mt-6">
+                <p className="font-bold text-base md:text-lg">1. Klik tombol "Buat Baru"</p>
+                <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                  <img src="/image/Modul_NotebookLM/Gambar 2.jpg" alt="Buat Baru" className="w-full h-auto object-contain" />
+                </div>
+              </div>
+            </motion.section>
+
+            {/* Section 3 */}
+            <motion.section 
+              id="langkah-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="scroll-mt-28 mb-8 md:mb-12"
+            >
+              <div className={`neo-card p-4 sm:p-6 md:p-8 mb-8 ${darkMode ? 'bg-dark-card border-white/20' : 'bg-white'}`}>
+                <h2 className="text-lg md:text-2xl font-heading font-bold flex items-center gap-3">
+                  <span className={`w-7 h-7 md:w-8 md:h-8 rounded-full border-3 flex items-center justify-center shrink-0 font-bold ${darkMode ? 'bg-green-brand text-black border-white/20' : 'bg-green-brand text-black border-black shadow-[2px_2px_0px_0px_#000]'}`}>3</span>
+                  Memasukkan Sumber Pelajaran ke Dalam Notebook
+                </h2>
+              </div>
+              
+              {/* Bookmark Navigator Tabs */}
+              <div className="flex items-end pl-2 sm:pl-8 relative z-10 overflow-x-auto scrollbar-hide -mb-[3px]">
+                <button 
+                  onClick={() => setActiveTab('upload')}
+                  className={`px-3 sm:px-6 py-2 sm:py-3 rounded-t-xl border-3 border-b-0 font-bold flex items-center gap-1.5 sm:gap-2 relative transition-all duration-200 ${
+                    activeTab === 'upload' 
+                      ? `pt-3 sm:pt-4 z-20 ${darkMode ? 'bg-gradient-to-b from-green-brand/40 to-dark-card text-white border-white/20' : 'bg-gradient-to-b from-green-300 to-white text-black border-black'}`
+                      : `mb-[3px] z-0 ${darkMode ? 'bg-dark-surface text-gray-400 border-white/20 hover:bg-white/10' : 'bg-gray-200 text-gray-500 border-black hover:bg-gray-300 hover:text-black shadow-[inset_0_-4px_0_rgba(0,0,0,0.1)]'}`
+                  }`}
+                >
+                  <FileText className="shrink-0 w-4 h-4 sm:w-[18px] sm:h-[18px]" /> <span className="text-xs sm:text-base">Upload File</span>
+                </button>
+                <button 
+                  onClick={() => setActiveTab('youtube')}
+                  className={`px-3 sm:px-6 py-2 sm:py-3 rounded-t-xl border-3 border-b-0 font-bold flex items-center gap-1.5 sm:gap-2 relative transition-all duration-200 ml-1 sm:ml-2 ${
+                    activeTab === 'youtube' 
+                      ? `pt-3 sm:pt-4 z-20 ${darkMode ? 'bg-gradient-to-b from-red-400/40 to-dark-card text-white border-white/20' : 'bg-gradient-to-b from-red-400 to-white text-black border-black'}`
+                      : `mb-[3px] z-0 ${darkMode ? 'bg-dark-surface text-gray-400 border-white/20 hover:bg-white/10' : 'bg-gray-200 text-gray-500 border-black hover:bg-gray-300 hover:text-black shadow-[inset_0_-4px_0_rgba(0,0,0,0.1)]'}`
+                  }`}
+                >
+                  <Play className="shrink-0 w-4 h-4 sm:w-[18px] sm:h-[18px]" /> <span className="text-xs sm:text-base">Link YouTube</span>
+                </button>
+              </div>
+
+              {/* Content Card */}
+              <div className={`relative border-3 rounded-2xl p-6 md:p-8 z-0 ${
+                darkMode ? 'border-white/20 bg-dark-card shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)]' : 'border-black bg-white shadow-[6px_6px_0px_0px_#000]'
+              }`}>
+                <div className="space-y-10">
+                  {activeTab === 'upload' && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-10">
+                      <div className="space-y-3">
+                        <p className="font-bold text-base md:text-lg">1. Klik tombol "Upload File"</p>
+                        <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                          <img src="/image/Modul_NotebookLM/Gambar 3.jpg" alt="Upload File" className="w-full h-auto object-contain" />
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <p className="font-bold text-base md:text-lg">2. Pilih file pelajaran yang ingin kamu buka dari komputermu</p>
+                        <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                          <img src="/image/Modul_NotebookLM/Gambar 4.jpg" alt="Pilih File" className="w-full h-auto object-contain" />
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <p className="font-bold text-base md:text-lg">3. Tunggu sebentar sampai robotnya selesai membaca dan materi berhasil dimasukkan</p>
+                        <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                          <img src="/image/Modul_NotebookLM/Gambar 5.jpg" alt="Materi Dimasukkan" className="w-full h-auto object-contain" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {activeTab === 'youtube' && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-10">
+                      <div className="space-y-3">
+                        <p className="font-bold text-base md:text-lg">1. Klik tombol "Situs"</p>
+                        <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                          <img src="/image/Modul_NotebookLM/Gambar 6.jpg" alt="Pilih Situs" className="w-full h-auto object-contain" />
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <p className="font-bold text-base md:text-lg">2. Masukkan link YouTube video pembelajaran kamu ke dalam kotak</p>
+                        <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                          <img src="/image/Modul_NotebookLM/Gambar 7.jpg" alt="Masukkan Link" className="w-full h-auto object-contain" />
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <p className="font-bold text-base md:text-lg">3. Tunggu sebentar sampai robotnya selesai menonton videonya dan materi berhasil dimasukkan!</p>
+                        <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                          <img src="/image/Modul_NotebookLM/Gambar 8.jpg" alt="Materi Dimasukkan" className="w-full h-auto object-contain" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              </div>
+            </motion.section>
+
+            {/* Section 4 */}
+            <motion.section 
+              id="langkah-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className={`scroll-mt-28 neo-card p-4 sm:p-6 md:p-8 ${darkMode ? 'bg-dark-card border-white/20' : 'bg-white'}`}
+            >
+              <h2 className="text-xl md:text-3xl font-heading font-bold mb-4 flex items-center gap-3">
+                <span className={`w-8 h-8 md:w-10 md:h-10 rounded-full border-3 flex items-center justify-center shrink-0 ${darkMode ? 'bg-yellow-brand text-black border-white/20' : 'bg-yellow-brand text-black border-black shadow-[3px_3px_0px_0px_#000]'}`}>4</span>
+                Membuat Kartu Tanya Jawab
+              </h2>
+              <div className="space-y-10 mt-6">
+                <div className="space-y-3">
+                  <p className="font-bold text-base md:text-lg">1. Lihat ke bagian "Studio" di sebelah kanan, kemudian klik "Kartu tanya jawab"</p>
+                  <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                    <img src="/image/Modul_NotebookLM/Gambar 8_2.jpg" alt="Kartu Tanya Jawab" className="w-full h-auto object-contain" />
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <p className="font-bold text-base md:text-lg">2. Robot pintar ini secara otomatis akan membuat Kartu tanya jawab berdasarkan materi yang tadi kamu sudah masukkan. Setelah selesai, kamu bisa langsung klik Kartu tanya jawabnya.</p>
+                  <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                    <img src="/image/Modul_NotebookLM/Gambar 9.jpg" alt="Membuka Kartu" className="w-full h-auto object-contain" />
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <p className="font-bold text-base md:text-lg">3. Berhasil! Sekarang kamu sudah bisa melatih pengetahuanmu dengan Kartu tanya jawab ini!</p>
+                  <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                    <img src="/image/Modul_NotebookLM/Gambar 9_2.jpg" alt="Mulai Belajar" className="w-full h-auto object-contain" />
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <p className="font-bold text-base md:text-lg">4. Kamu juga dapat melihat jawaban dengan klik tombol "Lihat jawaban"</p>
+                  <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                    <img src="/image/Modul_NotebookLM/Gambar 11.jpg" alt="Lihat Jawaban" className="w-full h-auto object-contain" />
+                  </div>
+                  <div className={`rounded-xl border-2 md:border-4 overflow-hidden mt-4 ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                    <img src="/image/Modul_NotebookLM/Gambar 12.jpg" alt="Penjelasan Jawaban" className="w-full h-auto object-contain" />
+                  </div>
+                </div>
+              </div>
+            </motion.section>
+
+            {/* Section 5 */}
+            <motion.section 
+              id="langkah-5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className={`scroll-mt-28 neo-card p-4 sm:p-6 md:p-8 ${darkMode ? 'bg-dark-card border-white/20' : 'bg-white'}`}
+            >
+              <h2 className="text-xl md:text-3xl font-heading font-bold mb-4 flex items-center gap-3">
+                <span className={`w-8 h-8 md:w-10 md:h-10 rounded-full border-3 flex items-center justify-center shrink-0 ${darkMode ? 'bg-purple-brand text-white border-white/20' : 'bg-purple-brand text-white border-black shadow-[3px_3px_0px_0px_#000]'}`}>5</span>
+                Membuat Kuis
+              </h2>
+              <div className="space-y-10 mt-6">
+                <div className="space-y-3">
+                  <p className="font-bold text-base md:text-lg">1. Tekan tombol "Kuis" yang ada di panel Studio</p>
+                  <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                    <img src="/image/Modul_NotebookLM/Gambar 13.jpg" alt="Tombol Kuis" className="w-full h-auto object-contain" />
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <p className="font-bold text-base md:text-lg">2. Robot pintar ini akan otomatis membuat kuis dari materi yang sudah kamu masukkan. Jika sudah dibuat, kamu bisa langsung klik Kuis yang sudah dibuat.</p>
+                  <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                    <img src="/image/Modul_NotebookLM/Gambar 14.jpg" alt="Kuis Selesai Dibuat" className="w-full h-auto object-contain" />
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <p className="font-bold text-base md:text-lg">3. Selamat! Kuis sudah bisa kamu kerjakan!</p>
+                  <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                    <img src="/image/Modul_NotebookLM/Gambar 15.jpg" alt="Mengerjakan Kuis" className="w-full h-auto object-contain" />
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <p className="font-bold text-base md:text-lg">4. Kamu juga dapat melihat hasil akhir Kuis-mu setelah selesai mengerjakan kuis.</p>
+                  <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                    <img src="/image/Modul_NotebookLM/Gambar 16.jpg" alt="Hasil Kuis" className="w-full h-auto object-contain" />
+                  </div>
+                </div>
+              </div>
+            </motion.section>
+
+          {/* End Ref for Confetti Trigger */}
+          <div ref={endRef} className="h-4 w-full" />
+
+        </div>
+      </div>
+      </div>
+
+      {/* Mobile Floating TOC Button */}
+      <button
+        onClick={() => setIsTocOpen(true)}
+        className={`fixed bottom-6 left-6 z-40 p-4 rounded-full border-4 shadow-[4px_4px_0px_0px_#000] flex items-center justify-center transition-transform hover:scale-105 active:scale-95 ${darkMode ? 'bg-pink-brand text-black border-white/20' : 'bg-pink-brand text-black border-black'} xl:hidden`}
+      >
+        <ListIcon size={24} />
+      </button>
+
+      {/* Mobile TOC Drawer */}
+      <AnimatePresence>
+        {isTocOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsTocOpen(false)}
+              className="fixed inset-0 bg-black/60 z-50 xl:hidden"
+            />
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className={`fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl border-t-4 border-l-4 border-r-4 p-6 shadow-[0px_-8px_0px_0px_rgba(0,0,0,1)] xl:hidden ${darkMode ? 'bg-dark-card border-white/20' : 'bg-white border-black'}`}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="font-heading font-bold text-xl flex items-center gap-2">
+                  <ListIcon size={20} /> Daftar Isi
+                </h3>
+                <button onClick={() => setIsTocOpen(false)} className={`p-2 rounded-full transition-colors ${darkMode ? 'hover:bg-white/10' : 'hover:bg-gray-200'}`}>
+                  <XIcon size={24} />
+                </button>
+              </div>
+              <ul className="space-y-4 font-medium text-base">
+                <li>
+                  <a 
+                    href="#langkah-1" 
+                    onClick={() => setIsTocOpen(false)}
+                    className={`block transition-colors ${activeToc === 'langkah-1' ? 'text-blue-brand font-bold' : (darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black')}`}
+                  >
+                    1. Membuka Google NotebookLM
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#langkah-2" 
+                    onClick={() => setIsTocOpen(false)}
+                    className={`block transition-colors ${activeToc === 'langkah-2' ? 'text-pink-brand font-bold' : (darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black')}`}
+                  >
+                    2. Membuat "Buku Catatan" Baru
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#langkah-3" 
+                    onClick={() => setIsTocOpen(false)}
+                    className={`block transition-colors ${activeToc === 'langkah-3' ? 'text-green-brand font-bold' : (darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black')}`}
+                  >
+                    3. Memasukkan Sumber Pelajaran
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#langkah-4" 
+                    onClick={() => setIsTocOpen(false)}
+                    className={`block transition-colors ${activeToc === 'langkah-4' ? 'text-yellow-brand font-bold' : (darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black')}`}
+                  >
+                    4. Membuat Kartu Tanya Jawab
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#langkah-5" 
+                    onClick={() => setIsTocOpen(false)}
+                    className={`block transition-colors ${activeToc === 'langkah-5' ? 'text-purple-brand font-bold' : (darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black')}`}
+                  >
+                    5. Membuat Kuis
+                  </a>
+                </li>
+              </ul>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
+  )
 }
