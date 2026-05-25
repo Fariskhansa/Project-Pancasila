@@ -480,6 +480,68 @@ Halaman akhir setelah semua soal selesai. Tampilkan jumlah jawaban yang benar, t
                 </div>
               </div>
 
+              {/* Tips Box */}
+              <div className={`mt-10 p-5 sm:p-6 rounded-2xl border-4 ${
+                darkMode 
+                  ? 'bg-yellow-brand/10 border-yellow-brand/30' 
+                  : 'bg-yellow-brand/20 border-black shadow-[4px_4px_0px_0px_#000]'
+              }`}>
+                <h3 className="text-xl md:text-2xl font-heading font-bold mb-6 flex items-center gap-2">
+                  💡 Tips Tambahan
+                </h3>
+                <ul className={`space-y-5 text-sm md:text-base leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl shrink-0 mt-0.5">🎭</span>
+                    <div className="flex-1">
+                      <h4 className={`font-bold text-base md:text-lg ${darkMode ? 'text-white' : 'text-black'}`}>Gunakan "Roleplay"</h4>
+                      <p className="mt-1">
+                        Beri Gemini persona seru!
+                        <br />
+                        <span className={`italic ${darkMode ? 'text-gray-400' : 'text-gray-500'} text-xs md:text-sm mt-1 inline-block`}>Contoh: "Bertindaklah sebagai karakter detektif yang mengajak anak memecahkan misteri..."</span>
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl shrink-0 mt-0.5">🎯</span>
+                    <div className="flex-1">
+                      <h4 className={`font-bold text-base md:text-lg ${darkMode ? 'text-white' : 'text-black'}`}>Spesifikkan Target Usia</h4>
+                      <p className="mt-1">
+                        Sebutkan usia/kelas siswa agar gaya bahasanya pas.
+                        <br />
+                        <span className={`italic ${darkMode ? 'text-gray-400' : 'text-gray-500'} text-xs md:text-sm mt-1 inline-block`}>Contoh: "Gunakan gaya bahasa gaul anak SMP kelas 8."</span>
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl shrink-0 mt-0.5">💡</span>
+                    <div className="flex-1">
+                      <h4 className={`font-bold text-base md:text-lg ${darkMode ? 'text-white' : 'text-black'}`}>Penjelasan Menarik</h4>
+                      <p className="mt-1">
+                        Perintahkan Gemini merespons jawaban salah dengan analogi lucu agar siswa tidak cepat menyerah.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl shrink-0 mt-0.5">🎉</span>
+                    <div className="flex-1">
+                      <h4 className={`font-bold text-base md:text-lg ${darkMode ? 'text-white' : 'text-black'}`}>Berikan Pujian Virtual</h4>
+                      <p className="mt-1">
+                        Instruksikan Gemini untuk menyelipkan emoji (seperti ⭐, 🚀, atau 🏆) setiap siswa berhasil menjawab benar!
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl shrink-0 mt-0.5">🎮</span>
+                    <div className="flex-1">
+                      <h4 className={`font-bold text-base md:text-lg ${darkMode ? 'text-white' : 'text-black'}`}>Kaitkan dengan Hobi Anak</h4>
+                      <p className="mt-1">
+                        Gabungkan materi pelajaran dengan hal-hal yang sedang disukai anak, seperti petualangan dunia game atau pahlawan super.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
             </div>
           </motion.section>
 
