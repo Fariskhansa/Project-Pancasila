@@ -277,16 +277,56 @@ export default function VideoNotebookLM({ darkMode }) {
                     ? 'bg-yellow-brand/10 border-yellow-brand/30' 
                     : 'bg-yellow-brand/20 border-black shadow-[4px_4px_0px_0px_#000]'
                 }`}>
-                  <h3 className="text-base md:text-lg font-heading font-bold mb-2 flex items-center gap-2">
-                    💡 Tips Tambahan
-                  </h3>
-                  <ul className={`space-y-2 text-base md:text-lg leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
-                    <li>• Semakin lengkap dokumen yang diupload, semakin bagus video yang dihasilkan!</li>
-                    <li>• Pilih format <strong>"Explainer"</strong> untuk penjelasan yang lebih detail, atau <strong>"Brief"</strong> kalau mau ringkasan singkat saja.</li>
-                    <li>• Jangan lupa pilih bahasa <strong>Indonesia</strong> supaya narasi videonya dalam bahasa Indonesia.</li>
-                    <li>• Kalau hasilnya kurang memuaskan, coba ganti gaya visual atau generate ulang.</li>
-                    <li>• Kamu bisa upload lebih dari satu dokumen ke dalam satu notebook untuk membuat video yang lebih komprehensif.</li>
-                  </ul>
+                <h3 className="text-xl md:text-2xl font-heading font-bold mb-6 flex items-center gap-2">
+                  💡 Tips Tambahan
+                </h3>
+                <ul className={`space-y-5 text-sm md:text-base leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl shrink-0 mt-0.5">📄</span>
+                    <div className="flex-1">
+                      <h4 className={`font-bold text-base md:text-lg ${darkMode ? 'text-white' : 'text-black'}`}>Dokumen Lengkap</h4>
+                      <p className="mt-1">
+                        Semakin lengkap dokumen materi yang kamu upload, semakin bagus dan akurat video yang dihasilkan!
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl shrink-0 mt-0.5">⚙️</span>
+                    <div className="flex-1">
+                      <h4 className={`font-bold text-base md:text-lg ${darkMode ? 'text-white' : 'text-black'}`}>Format Video</h4>
+                      <p className="mt-1">
+                        Pilih format <strong>"Explainer"</strong> untuk penjelasan yang detail, atau <strong>"Brief"</strong> kalau mau sekadar ringkasan singkat.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl shrink-0 mt-0.5">🇮🇩</span>
+                    <div className="flex-1">
+                      <h4 className={`font-bold text-base md:text-lg ${darkMode ? 'text-white' : 'text-black'}`}>Bahasa Narasi</h4>
+                      <p className="mt-1">
+                        Jangan lupa pilih bahasa <strong>Indonesia</strong> di pengaturan supaya narasi videonya berbahasa Indonesia.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl shrink-0 mt-0.5">🔄</span>
+                    <div className="flex-1">
+                      <h4 className={`font-bold text-base md:text-lg ${darkMode ? 'text-white' : 'text-black'}`}>Coba Ulang (Regenerate)</h4>
+                      <p className="mt-1">
+                        Kalau hasilnya kurang memuaskan, jangan ragu untuk mengganti gaya visual dan generate ulang.
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl shrink-0 mt-0.5">📚</span>
+                    <div className="flex-1">
+                      <h4 className={`font-bold text-base md:text-lg ${darkMode ? 'text-white' : 'text-black'}`}>Multi Dokumen</h4>
+                      <p className="mt-1">
+                        Kamu bisa meng-upload lebih dari satu dokumen ke dalam satu notebook agar video yang dihasilkan jauh lebih komprehensif.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
                 </div>
               </div>
             </motion.section>
