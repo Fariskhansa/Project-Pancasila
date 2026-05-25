@@ -25,8 +25,8 @@ export const tutorials = [
     title: <>Membuat Bahan Belajar Berupa Video Menggunakan <span className="notebook-sparkle">NotebookLM</span></>,
     description: <>Pelajari cara mengubah materi pelajaran menjadi video edukatif dengan bantuan <span className="notebook-sparkle">NotebookLM</span> secara mudah dan cepat.</>,
     duration: '15 Menit',
-    color: 'bg-yellow-brand',
-    hoverColor: 'hover:bg-yellow-brand',
+    color: 'bg-orange-brand',
+    hoverColor: 'hover:bg-orange-brand',
     iconColor: 'text-black',
     link: 'https://notebooklm.google.com',
     details: {
