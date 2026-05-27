@@ -167,7 +167,7 @@ export default function QuizFlashcardNotebookLM({ darkMode }) {
                 </a>
                 <p className="font-bold text-base md:text-lg">Nantinya kamu akan berada di halaman Notebook LM Seperti ini:</p>
                 <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                  <img src="/image/Modul_NotebookLM/Gambar 1.jpg" alt="Halaman Awal NotebookLM" className="w-full h-auto object-contain" />
+                  <img src="/image/Modul_NotebookLM/Gambar 1.png" alt="Halaman Awal NotebookLM" className="w-full h-auto object-contain" />
                 </div>
               </div>
             </motion.section>
@@ -187,7 +187,7 @@ export default function QuizFlashcardNotebookLM({ darkMode }) {
               <div className="space-y-6 mt-6">
                 <p className="font-bold text-base md:text-lg">1. Klik tombol "Buat Baru"</p>
                 <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                  <img src="/image/Modul_NotebookLM/Gambar 2.jpg" alt="Buat Baru" className="w-full h-auto object-contain" />
+                  <img src="/image/Modul_NotebookLM/Gambar 2.png" alt="Buat Baru" className="w-full h-auto object-contain" />
                 </div>
               </div>
             </motion.section>
@@ -239,21 +239,27 @@ export default function QuizFlashcardNotebookLM({ darkMode }) {
                   {activeTab === 'upload' && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-10">
                       <div className="space-y-3">
-                        <p className="font-bold text-base md:text-lg">1. Klik tombol "Upload File"</p>
+                        <p className="font-bold text-base md:text-lg">1. Klik tombol "Tambahkan Sumber"</p>
                         <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                          <img src="/image/Modul_NotebookLM/Gambar 3.jpg" alt="Upload File" className="w-full h-auto object-contain" />
+                          <img src="/image/Modul_NotebookLM/Gambar 3.png" alt="Tambahkan Sumber" className="w-full h-auto object-contain" />
                         </div>
                       </div>
                       <div className="space-y-3">
-                        <p className="font-bold text-base md:text-lg">2. Pilih file pelajaran yang ingin kamu buka dari komputermu</p>
+                        <p className="font-bold text-base md:text-lg">2. Klik tombol "Upload File"</p>
                         <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                          <img src="/image/Modul_NotebookLM/Gambar 4.jpg" alt="Pilih File" className="w-full h-auto object-contain" />
+                          <img src="/image/Modul_NotebookLM/Gambar 4.png" alt="Upload File" className="w-full h-auto object-contain" />
                         </div>
                       </div>
                       <div className="space-y-3">
-                        <p className="font-bold text-base md:text-lg">3. Tunggu sebentar sampai robotnya selesai membaca dan materi berhasil dimasukkan</p>
+                        <p className="font-bold text-base md:text-lg">3. Pilih file pelajaran yang ingin kamu buka</p>
                         <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                          <img src="/image/Modul_NotebookLM/Gambar 5.jpg" alt="Materi Dimasukkan" className="w-full h-auto object-contain" />
+                          <img src="/image/Modul_NotebookLM/Gambar 5.png" alt="Pilih File" className="w-full h-auto object-contain" />
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <p className="font-bold text-base md:text-lg">4. Tunggu sebentar sampai robotnya selesai membaca dan materi berhasil dimasukkan</p>
+                        <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                          <img src="/image/Modul_NotebookLM/Gambar 6.png" alt="Materi Dimasukkan" className="w-full h-auto object-contain" />
                         </div>
                       </div>
                     </motion.div>
@@ -262,21 +268,27 @@ export default function QuizFlashcardNotebookLM({ darkMode }) {
                   {activeTab === 'youtube' && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-10">
                       <div className="space-y-3">
-                        <p className="font-bold text-base md:text-lg">1. Klik tombol "Situs"</p>
+                        <p className="font-bold text-base md:text-lg">1. Klik tombol "Tambahkan Sumber"</p>
                         <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                          <img src="/image/Modul_NotebookLM/Gambar 6.jpg" alt="Pilih Situs" className="w-full h-auto object-contain" />
+                          <img src="/image/Modul_NotebookLM/Gambar 7.png" alt="Tambahkan Sumber" className="w-full h-auto object-contain" />
                         </div>
                       </div>
                       <div className="space-y-3">
-                        <p className="font-bold text-base md:text-lg">2. Masukkan link YouTube video pembelajaran kamu ke dalam kotak</p>
+                        <p className="font-bold text-base md:text-lg">2. Klik tombol "Situs"</p>
                         <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                          <img src="/image/Modul_NotebookLM/Gambar 7.jpg" alt="Masukkan Link" className="w-full h-auto object-contain" />
+                          <img src="/image/Modul_NotebookLM/Gambar 8.png" alt="Pilih Situs" className="w-full h-auto object-contain" />
                         </div>
                       </div>
                       <div className="space-y-3">
-                        <p className="font-bold text-base md:text-lg">3. Tunggu sebentar sampai robotnya selesai menonton videonya dan materi berhasil dimasukkan!</p>
+                        <p className="font-bold text-base md:text-lg">3. Masukkan link youtube pembelajaran kamu</p>
                         <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                          <img src="/image/Modul_NotebookLM/Gambar 8.jpg" alt="Materi Dimasukkan" className="w-full h-auto object-contain" />
+                          <img src="/image/Modul_NotebookLM/Gambar 9.png" alt="Masukkan Link" className="w-full h-auto object-contain" />
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <p className="font-bold text-base md:text-lg">4. Tunggu sebentar sampai robotnya selesai membaca dan materi berhasil dimasukkan!</p>
+                        <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                          <img src="/image/Modul_NotebookLM/Gambar 10.png" alt="Materi Dimasukkan" className="w-full h-auto object-contain" />
                         </div>
                       </div>
                     </motion.div>
@@ -299,30 +311,33 @@ export default function QuizFlashcardNotebookLM({ darkMode }) {
               </h2>
               <div className="space-y-10 mt-6">
                 <div className="space-y-3">
-                  <p className="font-bold text-base md:text-lg">1. Lihat ke bagian "Studio" di sebelah kanan, kemudian klik "Kartu tanya jawab"</p>
+                  <p className="font-bold text-base md:text-lg">1. Lihat ke bagian "Studio" kemudian klik "Kartu tanya jawab" dan klik "Generate"</p>
                   <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                    <img src="/image/Modul_NotebookLM/Gambar 8_2.jpg" alt="Kartu Tanya Jawab" className="w-full h-auto object-contain" />
+                    <img src="/image/Modul_NotebookLM/Gambar 11.png" alt="Generate Kartu" className="w-full h-auto object-contain" />
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <p className="font-bold text-base md:text-lg">2. Robot pintar ini secara otomatis akan membuat Kartu tanya jawab berdasarkan materi yang tadi kamu sudah masukkan. Setelah selesai, kamu bisa langsung klik Kartu tanya jawabnya.</p>
+                  <p className="font-bold text-base md:text-lg">2. Robot pintar ini secara otomatis ini akan membuat Kartu tanya jawab berdasarkan materi yang tadi kamu sudah masukkan. Setelah selesai, kamu bisa langsung klik Kartu tanya jawabnya.</p>
                   <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                    <img src="/image/Modul_NotebookLM/Gambar 9.jpg" alt="Membuka Kartu" className="w-full h-auto object-contain" />
+                    <img src="/image/Modul_NotebookLM/Gambar 12.png" alt="Kartu Selesai Dibuat" className="w-full h-auto object-contain" />
                   </div>
                 </div>
                 <div className="space-y-3">
                   <p className="font-bold text-base md:text-lg">3. Berhasil! Sekarang kamu sudah bisa melatih pengetahuanmu dengan Kartu tanya jawab ini!</p>
                   <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                    <img src="/image/Modul_NotebookLM/Gambar 9_2.jpg" alt="Mulai Belajar" className="w-full h-auto object-contain" />
+                    <img src="/image/Modul_NotebookLM/Gambar 13.png" alt="Mulai Belajar" className="w-full h-auto object-contain" />
                   </div>
                 </div>
                 <div className="space-y-3">
                   <p className="font-bold text-base md:text-lg">4. Kamu juga dapat melihat jawaban dengan klik tombol "Lihat jawaban"</p>
                   <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                    <img src="/image/Modul_NotebookLM/Gambar 11.jpg" alt="Lihat Jawaban" className="w-full h-auto object-contain" />
+                    <img src="/image/Modul_NotebookLM/Gambar 14.png" alt="Lihat Jawaban" className="w-full h-auto object-contain" />
                   </div>
-                  <div className={`rounded-xl border-2 md:border-4 overflow-hidden mt-4 ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                    <img src="/image/Modul_NotebookLM/Gambar 12.jpg" alt="Penjelasan Jawaban" className="w-full h-auto object-contain" />
+                </div>
+                <div className="space-y-3">
+                  <p className="font-bold text-base md:text-lg">5. Jawaban akan muncul</p>
+                  <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
+                    <img src="/image/Modul_NotebookLM/Gambar 15.png" alt="Penjelasan Jawaban" className="w-full h-auto object-contain" />
                   </div>
                 </div>
               </div>
@@ -342,27 +357,27 @@ export default function QuizFlashcardNotebookLM({ darkMode }) {
               </h2>
               <div className="space-y-10 mt-6">
                 <div className="space-y-3">
-                  <p className="font-bold text-base md:text-lg">1. Tekan tombol "Kuis" yang ada di panel Studio</p>
+                  <p className="font-bold text-base md:text-lg">1. Tekan tombol "kuis" dan klik "Generate"</p>
                   <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                    <img src="/image/Modul_NotebookLM/Gambar 13.jpg" alt="Tombol Kuis" className="w-full h-auto object-contain" />
+                    <img src="/image/Modul_NotebookLM/Gambar 16.png" alt="Generate Kuis" className="w-full h-auto object-contain" />
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <p className="font-bold text-base md:text-lg">2. Robot pintar ini akan otomatis membuat kuis dari materi yang sudah kamu masukkan. Jika sudah dibuat, kamu bisa langsung klik Kuis yang sudah dibuat.</p>
+                  <p className="font-bold text-base md:text-lg">2. Robot pintar ini akan otomatis membuat quiz dari materi yang sudah kamu masukkan. Jika sudah dibuat, kamu bisa langsung klik Kuis yang sudah dibuat.</p>
                   <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                    <img src="/image/Modul_NotebookLM/Gambar 14.jpg" alt="Kuis Selesai Dibuat" className="w-full h-auto object-contain" />
+                    <img src="/image/Modul_NotebookLM/Gambar 17.png" alt="Kuis Selesai Dibuat" className="w-full h-auto object-contain" />
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <p className="font-bold text-base md:text-lg">3. Selamat! Kuis sudah bisa kamu kerjakan!</p>
+                  <p className="font-bold text-base md:text-lg">3. Selamat! Quiz sudah bisa kamu kerjakan!</p>
                   <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                    <img src="/image/Modul_NotebookLM/Gambar 15.jpg" alt="Mengerjakan Kuis" className="w-full h-auto object-contain" />
+                    <img src="/image/Modul_NotebookLM/Gambar 18.png" alt="Mengerjakan Kuis" className="w-full h-auto object-contain" />
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <p className="font-bold text-base md:text-lg">4. Kamu juga dapat melihat hasil akhir Kuis-mu setelah selesai mengerjakan kuis.</p>
+                  <p className="font-bold text-base md:text-lg">4. Kamu juga dapat melihat hasil akhir Quizmu setelah selesai mengerjakan quiz.</p>
                   <div className={`rounded-xl border-2 md:border-4 overflow-hidden ${darkMode ? 'border-white/20 bg-white/5' : 'border-black bg-gray-50'}`}>
-                    <img src="/image/Modul_NotebookLM/Gambar 16.jpg" alt="Hasil Kuis" className="w-full h-auto object-contain" />
+                    <img src="/image/Modul_NotebookLM/Gambar 19.png" alt="Hasil Kuis" className="w-full h-auto object-contain" />
                   </div>
                 </div>
               </div>
